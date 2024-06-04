@@ -14,6 +14,9 @@ def download_model(drive_url, output_path):
 drive_url = "https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8/view?usp=drive_link"
 model_path = 'Malaria_Detection_Model.h5'
 
+download_model(drive_url, model_path)
+model = tf.keras.models.load_model(model_path)
+
 def load_and_preprocess_image(image_path, target_size=(135, 135)):
     image = Image.open(image_path)
     image = image.resize(target_size)
