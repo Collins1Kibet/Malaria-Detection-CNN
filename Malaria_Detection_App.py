@@ -11,7 +11,7 @@ def download_model(drive_url, output_path):
     if not os.path.exists(output_path):
         gdown.download(drive_url, output_path, quiet=False)
 
-drive_url = "https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8/view?usp=drive_link"
+drive_url = 'https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8/view?usp=drive_link'
 model_path = 'Malaria_Detection_Model.h5'
 
 download_model(drive_url, model_path)
