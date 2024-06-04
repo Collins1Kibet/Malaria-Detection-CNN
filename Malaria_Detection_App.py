@@ -1,21 +1,17 @@
-import json
-from PIL import Image
 import os
+from PIL import Image
 
-import gdown
 import numpy as np
 import tensorflow as tf
 import streamlit as st
+import gdown
 
 def download_model(drive_url, output_path):
     if not os.path.exists(output_path):
+        print(f"Downloading model from {drive_url}")
         gdown.download(drive_url, output_path, quiet=False)
-
-drive_url = 'https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8/view?usp=drive_link'
-model_path = 'Malaria_Detection_Model.h5'
-
-download_model(drive_url, model_path)
-model = tf.keras.models.load_model(model_path)
+    else:
+        print(f"Model file already exists at {output_path}")
 
 def load_and_preprocess_image(image_path, target_size=(135, 135)):
     image = Image.open(image_path)
@@ -30,6 +26,21 @@ def predict_image(model, image_path):
     prediction = model.predict(preprocessed_image)
     return 'Uninfected' if prediction[0] > 0.5 else 'Infected'
 
+# Google Drive link to your model file
+drive_url = 'https://drive.google.com/uc?id=1bwAzohfaBkwJaifU-hs57thCea5cPyx8'
+model_path = 'Malaria_Detection_Model.h5'
+
+# Download the model
+download_model(drive_url, model_path)
+
+# Check if the file exists and its size
+if os.path.exists(model_path):
+    print(f"Model file downloaded successfully, size: {os.path.getsize(model_path)} bytes")
+else:
+    print("Model file was not downloaded successfully.")
+
+# Load the model
+model = tf.keras.models.load_model(model_path)
 
 st.title('🦟 Malaria Detection System')
 
