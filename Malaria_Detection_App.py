@@ -27,7 +27,7 @@ def predict_image(model, image_path):
     return 'Uninfected' if prediction[0] > 0.5 else 'Infected'
 
 # Google Drive link to your model file
-drive_url = 'https://drive.google.com/uc?id=1bwAzohfaBkwJaifU-hs57thCea5cPyx8'
+drive_url = 'https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8/view?usp=drive_link'
 model_path = 'Malaria_Detection_Model.h5'
 
 # Download the model
