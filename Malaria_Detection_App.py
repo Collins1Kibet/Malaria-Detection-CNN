@@ -2,15 +2,17 @@ import json
 from PIL import Image
 import os
 
+import gdown
 import numpy as np
 import tensorflow as tf
 import streamlit as st
 
-pwd = os.getcwd()   # or  os.path.dirname(os.path.abspath(__file__))
+def download_model(drive_url, output_path):
+    if not os.path.exists(output_path):
+        gdown.download(drive_url, output_path, quiet=False)
 
-model_path = os.path.join(pwd, 'Malaria Detection Notebook', 'Malaria_Detection_Trained_Model.txt', 'https://drive.google.com/drive/quota', 'Malaria_Detection_Model.h5')
-
-model = tf.keras.models.load_model(model_path)
+drive_url = "https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8/view?usp=drive_link"
+model_path = 'Malaria_Detection_Model.h5'
 
 def load_and_preprocess_image(image_path, target_size=(135, 135)):
     image = Image.open(image_path)
