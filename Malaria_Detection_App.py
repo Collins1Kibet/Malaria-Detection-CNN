@@ -8,7 +8,7 @@ import streamlit as st
 
 pwd = os.getcwd()   # or  os.path.dirname(os.path.abspath(__file__))
 
-model_path = os.path.join(pwd, 'Malaria_Detection_Model.h5')
+model_path = os.path.join(pwd, 'Malaria Detection Notebook', 'Malaria_Detection_Model.h5')
 
 model = tf.keras.models.load_model(model_path)
 
