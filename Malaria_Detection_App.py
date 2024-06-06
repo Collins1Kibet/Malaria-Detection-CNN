@@ -30,7 +30,7 @@ def predict_image(model, image_path):
     prediction = model.predict(preprocessed_image)
     return 'Uninfected' if prediction[0] > 0.5 else 'Infected'
 
-
+# Modelling the Streamlit Web app Page
 st.title('🦟 Malaria Detection System')
 
 uploaded_image = st.file_uploader('Upload Cell Image...', type=['jpeg', 'jpg', 'png'])
