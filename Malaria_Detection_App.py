@@ -9,10 +9,23 @@ import streamlit as st
 
 def download_model(drive_url, output_path):
     if not os.path.exists(output_path):
+        print(f"Downloading model from {drive_url}")
         gdown.download(drive_url, output_path, quiet=False)
+    else:
+        print(f"Model file already exists at {output_path}")
 
-drive_url = 'https://drive.google.com/file/d/1bwAzohfaBkwJaifU-hs57thCea5cPyx8'
+# Google Drive link to model file
+drive_url = 'https://drive.google.com/uc?id=1bwAzohfaBkwJaifU-hs57thCea5cPyx8'
 model_path = 'Malaria_Detection_Model.h5'
+
+# Download the model
+download_model(drive_url, model_path)
+
+# Check if the file exists and its size
+if os.path.exists(model_path):
+    print(f"Model file downloaded successfully, size: {os.path.getsize(model_path)} bytes")
+else:
+    print("Model file was not downloaded successfully.")
 
 download_model(drive_url, model_path)
 model = tf.keras.models.load_model(model_path)
